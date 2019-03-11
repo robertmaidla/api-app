@@ -1,0 +1,13 @@
+<div class="container">
+  <app-set-item
+    *ngFor="let set of sets"
+    [set]="set"
+    (toggleActiveSet)="toggleActiveSet(set)"
+  >  
+  </app-set-item>
+  <div *ngIf="activeSet">
+    <table>
+      <tr *ngFor="let row of activeRows"><td><span>{{row.content}}</span><button (click)="deleteRow(row)">Delete</button></td></tr>
+    </table>
+  </div>
+</div>
