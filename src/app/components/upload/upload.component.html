@@ -1,18 +1,10 @@
 <div class="container">
     <input 
-        class="name-input"
-        *ngIf="!selectedFile || !inputName" 
-        [ngModel]="inputName" 
-        (ngModelChange)="inputName=$event" 
-        placeholder="New DataSet name.."
-    >
-    <br>
-    <input 
         type="file"
         style="display: none"
         (change)="onFileSelected($event)"
         #fileInput    
     >
-    <button *ngIf="!selectedFile || !inputName" type="button" (click)="fileInput.click()">DataSet file upload</button>
-    <button *ngIf="selectedFile && inputName" type="button" (click)="onUpload()">Upload</button>
+    <button *ngIf="!selectedFile" type="button" (click)="fileInput.click()">DataSet file upload</button>
+    <button *ngIf="selectedFile" type="button" (click)="onUpload()">Upload</button>
 </div>

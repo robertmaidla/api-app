@@ -46,7 +46,7 @@ export class DataServiceService {
   // Remove reference to row in given dataset
   removeRow(setId:string, rowId:string):Observable<string> {
     try {
-      return this.http.get<string>(`${this.removeRowUrl}${setId}/${rowId}`);
+      return this.http.get<string>(`${this.removeRowUrl}${setId}/${rowId}/`);
     } catch (e) {
       console.log(e);
     }

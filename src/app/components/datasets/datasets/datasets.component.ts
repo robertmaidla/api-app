@@ -20,15 +20,7 @@ export class DatasetsComponent implements OnInit {
   constructor(private dataService:DataServiceService) { }
 
   ngOnInit() {
-    try {
-      this.dataService.getDataSets()
-        .subscribe(
-          returns => this.sets = returns,
-          err => this.handleError('Error loading DataSets', err)
-        );
-    } catch (e) {
-      this.handleError(e);
-    }
+    this.refreshUI();
   }
 
   // Show/hide DataSet detail
@@ -85,6 +77,17 @@ export class DatasetsComponent implements OnInit {
     }
   }
 
+  // Refresh UI
+  refreshUI() {
+    try {
+      this.dataService.getDataSets()
+        .subscribe(
+          returns => this.sets = returns,
+          err => this.handleError('Error loading DataSets', err)
+        );
+    } catch (e) {
+      this.handleError(e);
+    }
+  }
   
-
 }

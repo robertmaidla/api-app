@@ -1,12 +1,14 @@
 <div class="container">
   <p *ngIf="error" class="error-message">{{error}}</p>
-  <app-upload></app-upload>
+  <app-upload 
+    (refreshUI)="refreshUI($event)" 
+    (handleError)="handleError($event)"
+  ></app-upload>
   <app-set-item
     *ngFor="let set of sets"
     [set]="set"
     (toggleActiveSet)="toggleActiveSet(set)"
-  >  
-  </app-set-item>
+  ></app-set-item>
   <div *ngIf="activeSet">
     <table>
       <tr *ngFor="let row of activeRows"><td><span>{{row.content}}</span><button (click)="deleteRow(row)">Delete</button></td></tr>

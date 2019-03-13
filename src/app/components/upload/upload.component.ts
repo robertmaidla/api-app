@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { HttpClient, HttpEventType } from '@angular/common/http';
 
 @Component({
@@ -7,8 +7,9 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
   styleUrls: ['./upload.component.scss']
 })
 export class UploadComponent implements OnInit {
+  @Output() refreshUI: EventEmitter<any> = new EventEmitter();
+  @Output() handleError: EventEmitter<any> = new EventEmitter();
 
-  inputName:string;
   selectedFile:File = null;
   feedback:string;
 
@@ -25,25 +26,35 @@ export class UploadComponent implements OnInit {
   }
 
   onUpload() {
-    this.fd = new FormData();
-    this.fd.append('file', this.selectedFile, this.selectedFile.name);
-    fd.append('DatasetName', this.inputName);
-    this.http.post(this.url, this.fd, {
-        reportProgress: true,
-        observe: 'events'    
-      })
-        .subscribe(event => {
-          if (event.type === HttpEventType.UploadProgress) {
-            this.feedback = `${Math.round(event.loaded / event.total * 100)}%`;
-          } else if (event.type === HttpEventType.Response) {
-            console.log("LOGGING")
-            console.log(event);
-          }
-          //Response message
-          //Reload UI
-          this.inputName = null;
-          this.selectedFile = null;
-        });
+    try {
+      this.fd = new FormData();
+      this.fd.append('file', this.selectedFile, this.selectedFile.name);
+      this.http.post(this.url, this.fd, {
+          reportProgress: true,
+          observe: 'events'    
+        })
+          .subscribe(
+            event => {
+              if (event.type === HttpEventType.UploadProgress) { 
+
+              } else if (event.type === HttpEventType.Response) {
+                const res:boolean = event.ok;
+                if (res) {
+                  // Reload UI
+                  this.refreshUI.emit();
+                } else {
+                  this.handleError.emit(event.body);
+                }
+                //Clear UI form
+                this.selectedFile = null;
+              }
+            },
+            err => this.handleError.emit(err)
+          );
+    } catch(e) {
+      console.log(e);
+      this.handleError.emit(e);
+    }
   }
 
 }
