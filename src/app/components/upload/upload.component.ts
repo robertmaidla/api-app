@@ -27,7 +27,7 @@ export class UploadComponent implements OnInit {
   onUpload() {
     this.fd = new FormData();
     this.fd.append('file', this.selectedFile, this.selectedFile.name);
-    // fd.append('DatasetName', this.inputName);
+    fd.append('DatasetName', this.inputName);
     this.http.post(this.url, this.fd, {
         reportProgress: true,
         observe: 'events'    
