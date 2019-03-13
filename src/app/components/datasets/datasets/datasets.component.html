@@ -1,4 +1,6 @@
 <div class="container">
+  <p *ngIf="error" class="error-message">{{error}}</p>
+  <app-upload></app-upload>
   <app-set-item
     *ngFor="let set of sets"
     [set]="set"

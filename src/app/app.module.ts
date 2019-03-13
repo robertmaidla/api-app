@@ -7,18 +7,24 @@ import { DatasetsComponent } from './components/datasets/datasets/datasets.compo
 import { HttpClientModule } from '@angular/common/http';
 import { SetItemComponent } from './components/set-item/set-item.component';
 import { UploadComponent } from './components/upload/upload.component';
+import { FormsModule } from '@angular/forms';
+import { HeaderComponent } from './components/header/header.component';
+import { AboutComponent } from './components/about/about.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DatasetsComponent,
     SetItemComponent,
-    UploadComponent
+    UploadComponent,
+    HeaderComponent,
+    AboutComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

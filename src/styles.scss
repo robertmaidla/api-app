@@ -1,1 +1,51 @@
-/* You can add global styles to this file, and also import other style files */
+@import url('https://fonts.googleapis.com/css?family=Raleway:300');
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+  
+  body {
+    font-family: 'Raleway', sans-serif;
+    line-height: 1.4;
+  }
+
+  button, .submit, textarea, input {
+    font-family: 'Raleway', sans-serif;
+  }
+
+  button {
+    background: #305F72;
+    color: rgb(221, 220, 220);
+    border: none;
+    padding: 5px 9px;
+    border-radius: 10px;
+    cursor: pointer;
+    transition: background-color .2s ease;
+  }
+
+  button:focus {
+    outline: 0;
+  }
+
+  button:hover {
+    background: #568EA6;
+  }
+  
+  a {
+    color: rgb(221, 220, 220);
+    text-decoration: none;
+  }
+  
+  .container {
+    padding: 1em;
+    text-align: center;
+  }
+
+  @media only screen and (min-width: 1024px) {
+    .container {
+        width: 80%;
+        margin: 0 auto;
+    }
+  }

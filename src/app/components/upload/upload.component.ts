@@ -8,9 +8,14 @@ import { HttpClient, HttpEventType } from '@angular/common/http';
 })
 export class UploadComponent implements OnInit {
 
+  inputName:string;
   selectedFile:File = null;
+  feedback:string;
 
-  constructor(private http: HttpClient) { }
+  url:string = 'http://127.0.0.1:8000/datasets/generate/';
+  fd:FormData;
+
+  constructor(private http:HttpClient) { }
 
   ngOnInit() {
   }
@@ -20,20 +25,25 @@ export class UploadComponent implements OnInit {
   }
 
   onUpload() {
-    const url = 'http://127.0.0.1:8000/datasets/generate/';
-    const fd = new FormData();
-    fd.append('file', this.selectedFile, this.selectedFile.name);
-    this.http.post(url, fd, {
-      reportProgress: true,
-      observe: 'events'
-    })
-      .subscribe(event => {
-        if (event.type === HttpEventType.UploadProgress) {
-          console.log(`Upload Progress: ${Math.round(event.loaded / event.total * 100)}%`);
-        } else if (event.type === HttpEventType.Response) {
-          console.log(event);
-        }
+    this.fd = new FormData();
+    this.fd.append('file', this.selectedFile, this.selectedFile.name);
+    // fd.append('DatasetName', this.inputName);
+    this.http.post(this.url, this.fd, {
+        reportProgress: true,
+        observe: 'events'    
       })
+        .subscribe(event => {
+          if (event.type === HttpEventType.UploadProgress) {
+            this.feedback = `${Math.round(event.loaded / event.total * 100)}%`;
+          } else if (event.type === HttpEventType.Response) {
+            console.log("LOGGING")
+            console.log(event);
+          }
+          //Response message
+          //Reload UI
+          this.inputName = null;
+          this.selectedFile = null;
+        });
   }
 
 }
