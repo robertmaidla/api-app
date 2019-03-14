@@ -9,6 +9,7 @@ import { Set } from 'src/app/models/Set';
 })
 export class SetItemComponent implements OnInit {
   @Input() set:Set;
+  @Input() isActive:boolean;
   @Output() toggleActiveSet:EventEmitter<Set> = new EventEmitter();
 
   constructor() { }
@@ -18,6 +19,14 @@ export class SetItemComponent implements OnInit {
 
   activateSet(set:Set):void {
     this.toggleActiveSet.emit(set);
+  }
+
+  // Dynamic ngClass classes
+  setDynamicClasses(set:Set):any {
+    return {
+      'set-item': !this.isActive,
+      'active-set-item': this.isActive
+    }
   }
 
 }

@@ -10,8 +10,9 @@ import { Set } from '../models/Set';
   providedIn: 'root'
 })
 export class DataServiceService {
-  setsUrl:string = 'http://127.0.0.1:8000/datasets/';
-  removeRowUrl:string = 'http://127.0.0.1:8000/remove-row/';
+  root:string = 'http://127.0.0.1:8000/';
+  setsUrl:string = `${this.root}datasets/`;
+  removeRowUrl:string = `${this.root}remove-row/`;
   rowsUrlExtension:string = 'rows';
 
   private countdownEndSource = new Subject<void>();

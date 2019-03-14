@@ -4,13 +4,18 @@
     (refreshUI)="refreshUI($event)" 
     (handleError)="handleError($event)"
   ></app-upload>
-  <app-set-item
-    *ngFor="let set of sets"
-    [set]="set"
-    (toggleActiveSet)="toggleActiveSet(set)"
-    [ngClass]="setDynamicClasses(set)"
-  ></app-set-item>
-  <div *ngIf="activeSet">
+  <div class="datasets">
+    <ul class="set-menu">
+      <li *ngFor="let set of sets">
+        <app-set-item
+          [set]="set"
+          [isActive]="set === activeSet"
+          (toggleActiveSet)="toggleActiveSet(set)"
+        ></app-set-item>
+      </li>
+    </ul>
+  </div>
+  <div *ngIf="activeSet" class="datarows">
     <table>
       <tr *ngFor="let row of activeRows"><td><span>{{row.content}}</span><button (click)="deleteRow(row)">Delete</button></td></tr>
     </table>

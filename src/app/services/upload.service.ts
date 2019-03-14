@@ -6,7 +6,8 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class UploadService {
-  url:string = 'http://127.0.0.1:8000/datasets/generate/';
+  root:string = 'http://127.0.0.1:8000/';
+  url:string = `${this.root}datasets/`;
   fd:FormData;
   
   constructor(private http:HttpClient) { }

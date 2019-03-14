@@ -1,3 +1,1 @@
-<div>
-  <a class="set-item" (click)="activateSet(set)">{{set.name}}</a>
-</div>
+<a [ngClass]="setDynamicClasses(set)" (click)="activateSet(set)">{{set.name}}</a>
