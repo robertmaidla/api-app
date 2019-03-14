@@ -8,6 +8,7 @@
     *ngFor="let set of sets"
     [set]="set"
     (toggleActiveSet)="toggleActiveSet(set)"
+    [ngClass]="setDynamicClasses(set)"
   ></app-set-item>
   <div *ngIf="activeSet">
     <table>

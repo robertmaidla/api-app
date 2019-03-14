@@ -13,8 +13,11 @@ export class UploadService {
 
   uploadEntry(inputName:string, selectedFile:File):Observable<Object> {
     this.fd = new FormData();
-    this.fd.append('file', selectedFile, selectedFile.name);
-    // fd.append('DatasetName', this.inputName);
-    return this.http.post(this.url, this.fd);
+    try {
+      this.fd.append('file', selectedFile, selectedFile.name);
+      return this.http.post(this.url, this.fd);
+    } catch (e) {
+      console.log(e);
+    }
   }
 }

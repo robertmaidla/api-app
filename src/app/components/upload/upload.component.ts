@@ -25,6 +25,7 @@ export class UploadComponent implements OnInit {
     this.selectedFile = <File>event.target.files[0];
   }
 
+  // On file upload
   onUpload() {
     try {
       this.fd = new FormData();
@@ -35,9 +36,10 @@ export class UploadComponent implements OnInit {
         })
           .subscribe(
             event => {
-              if (event.type === HttpEventType.UploadProgress) { 
-
-              } else if (event.type === HttpEventType.Response) {
+              if (event.type === HttpEventType.UploadProgress) {
+                // UI upload progress feature
+              } 
+              else if (event.type === HttpEventType.Response) {
                 const res:boolean = event.ok;
                 if (res) {
                   // Reload UI
@@ -54,6 +56,7 @@ export class UploadComponent implements OnInit {
     } catch(e) {
       console.log(e);
       this.handleError.emit(e);
+      this.selectedFile = null;
     }
   }
 

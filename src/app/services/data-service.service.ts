@@ -1,16 +1,10 @@
 import { Injectable } from '@angular/core';
 import { Observable, Subject } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
 import { Row } from '../models/Row';
 import { Set } from '../models/Set';
 
-
-// const httpOptions = {
-//   headers: new HttpHeaders({
-//     'Content-Type': 'application/json'
-//   })
-// }
 
 @Injectable({
   providedIn: 'root'
@@ -51,6 +45,4 @@ export class DataServiceService {
       console.log(e);
     }
   }
-
-
 }

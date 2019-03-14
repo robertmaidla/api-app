@@ -89,5 +89,16 @@ export class DatasetsComponent implements OnInit {
       this.handleError(e);
     }
   }
+
+  // Dynamic ngClass classes
+  setDynamicClasses(set:Set):any {
+    let activeClass:boolean = false;
+    if (set === this.activeSet) {
+      activeClass = true;
+    }
+    return {
+      'active-set-item': activeClass
+    }
+  }
   
 }
